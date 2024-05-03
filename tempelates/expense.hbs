@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker Section</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        *{
+            font-family: Garamond;
+        }
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+          
+            /* Improved font */
+        }
+
+      
+        .expense-container {
+            display: flex;
+            /* padding-top: 100px; */
+            height: 100%;
+            flex-direction: row;
+        }
+
+        .category {
+            border: 1px solid #ddd;
+            /* Lighter border */
+            box-sizing: border-box;
+            padding: 40px;
+            /* Increased padding */
+            transition: background-color 0.3s;
+            /* Smooth background color transition */
+            margin-bottom: 10px;
+            /* Added margin between divs */
+        }
+
+        .category:hover {
+            background-color: #cfd8dc;
+            /* Slightly darker gray on hover */
+        }
+
+        #selection-list {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            /* background-color: #81d4fa; */
+            background-color: #1c485d;
+            color: wheat;
+            /* Blue background */
+        }
+
+        #expenses-list {
+            width: 70%;
+            background-color: #fff;
+            /* White background */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .comparison-chart {
+            height: 50%;
+            /* background-color: aquamarine; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+
+        .pie-chart{
+            margin-bottom: 70px;
+        }
+
+    
+
+        .rotate-animation {
+            animation: rotate 0.8s linear;
+            /* Rotation animation */
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .time-interval-selector {
+            margin-top: 20px;
+        }
+
+        .data-table {
+            display: flex;
+            flex-direction: row;
+            height: 50%;
+        }
+
+        .data-table-content {
+            width: 100%;
+            background-color: #1c485d;
+            display: flex;
+            flex-direction: row;
+            color: wheat;
+        }
+
+        #expense-table{
+            width: 70%;
+            padding: 5px;
+        }
+
+
+
+
+
+
+
+        .data-table-content {
+    width: 100%;
+   
+    display: flex;
+    flex-direction: row;
+    color: wheat;
+    padding: 10px; /* Add padding */
+}
+
+#expense-table {
+    width: 80%;
+    padding: 10px; /* Add padding */
+    border-collapse: collapse; 
+}
+
+#expense-table th,
+#expense-table td {
+    width: 30%;
+
+    padding: 8px; /* Add padding */
+    border: 1px solid #ddd; 
+}
+
+#expense-table th {
+    /* background-color: #78909c;  */
+    color: wheat;/* Add text color */
+}
+
+
+
+
+
+
+
+
+
+        .data-table-right {
+            width: 30%;
+            background-color: antiquewhite;
+        }
+
+        button {
+            padding: 12px 24px;
+            /* Increased padding */
+            background-color: #cdac19; /* Yellow button */
+            /* background-color: rgba(75, 192, 192, 0.5); */ /*blue*/
+            /* background-color: rgba(75, 192, 192, 0.5); -- green */
+            /* background-color:rgba(255, 206, 86, 0.5) ; */
+
+
+/* 
+            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255, 159, 64, 0.5)',
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)', */
+           
+            color: #37474f;
+            /* Dark gray text */
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            /* Smooth background color transition */
+        }
+
+        button:hover {
+            background-color: #fbc02d;
+            /* Darker yellow on hover */
+        }
+
+        .additional-info {
+            display: none;
+        }
+
+        .heading {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        tfoot {
+    background-color: #e0e0e0; /* Light gray background color */
+}
+
+tfoot td {
+    font-weight: bold; /* Make text bold */
+}
+
+        @media only screen and (max-width: 768px) {
+            .expense-container {
+                flex-direction: row;
+                /* For larger screens, display sections side by side */
+            }
+
+            .category {
+                width: 50%;
+            }
+        }
+
+
+.header-stick {
+    /* position: fixed; */
+    width: 100%;
+    z-index: 6;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    height: 90px;
+    /* Adjust the height as needed */
+    background-color: rgba(9, 9, 9, 0.332);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    justify-content: space-between;
+}
+
+.header>div {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav-bar {
+    width: 24%;
+
+    justify-content: flex-start;
+    /* Align children to the start */
+    padding-left: 2rem;
+    /* Add padding to align the icon */
+}
+
+.nav-icon {
+
+    cursor: pointer;
+    /* color: #2c2e48; */
+    color: #fafafa;
+    font-size: 30px;
+    width: 40px;
+    /* padding-bottom: 12px; */
+    /* margin-right: 2rem;  */
+}
+
+
+
+.nav-menu {
+    display: none;
+    position: absolute;
+    background-color: #2c2e48;
+    width: 200px;
+    top: 60px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);
+    box-shadow: 0 2px 5px #2c2e48 rgba(0, 0, 0, 0.2);
+    max-height: 0; 
+   overflow: hidden;
+    transition: max-height 0.7s ease; 
+}
+
+.nav-menu.show {
+   
+        display: block;
+        max-height: 300px; 
+    
+    
+}
+
+.nav-menu a {
+    color: white;
+    /* Black color for the links */
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+     margin-bottom: 5px;
+}
+
+
+
+
+.nav-menu a:hover {
+    background-color: rgb(96, 95, 95);
+    color: white;
+    /* Gray on hover */
+} 
+
+
+
+
+
+
+.logo {
+    width: 50%;
+
+    display: flex;
+    justify-content: center;
+    /* Align the content to the center */
+}
+
+.logo h1 {
+    /* color: #23222d; */
+    color: #fafafa;
+    font-size: 2.3rem;
+    margin: 0;
+
+}
+
+.get-started-div-header {
+    width: 26%;
+    margin: 0;
+
+    display: flex;
+    /* justify-content: flex-end;  */
+    justify-content: center;
+    /* padding-right: 2rem;  */
+}
+
+.get-started {
+    height: 3.5rem;
+    width: 50%;
+    /* border: 2px solid black; */
+    /* border-color: #59c174; */
+    border-radius: 1.3rem;
+    /* background-color: rgb(249, 249, 149); */
+    font-size: 1rem;
+    /* background-color: #59c174; */
+    background-color: rgb(241, 219, 248);
+    color: #2c2e48;
+    border-color: transparent;
+}
+
+
+.get-started:hover {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #2c2e48;
+    letter-spacing: 0.06rem;
+    width: 53%;
+    box-shadow: transparent;
+    background-color: rgb(236, 194, 249);
+
+
+
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="header-stick">
+        <div class="header">
+            <div class="nav-bar">
+                <div class="nav-icon" onclick="toggleNavMenu()">
+                    ☰
+                </div>
+                <div id="navMenu" class="nav-menu">
+                    <!-- Content of your navigation menu goes here -->
+                    <a href="/home">Home</a><br>
+                    <a href="/expense">Expense</a><br>
+                    <a href="/diet">Diet</a><br>
+                    <a href="/journal">Journal</a><br>
+                   <a href="/meditation">Meditation</a>
+    
+                </div>
+    
+            </div>
+            <div class="logo">
+                <h1>HarmonyWithLife</h1>
+            </div>
+            <div class="get-started-div-header">
+                <button class="get-started" onclick="window.location.href='/signup'">Get Started</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="expense-container">
+        <div class="category" id="selection-list">
+            <div class="heading">Expense Tracker</div> <!-- Heading added here -->
+            <div>
+                <label for="date">Date:</label>
+                <input type="date" id="date">
+            </div>
+
+            <!-- Add select options for expense categories -->
+            <div>
+                <label for="expense-type">Type of Expense:</label>
+                <select id="expense-type">
+                    <option value="">Select</option>
+                    <option value="housing">Housing</option>
+                    <option value="transportation">Transportation</option>
+                    <option value="food">Food</option>
+                    <option value="utilities">Utilities</option>
+                    <option value="insurance">Insurance</option>
+                    <option value="medical">Medical & Healthcare</option>
+                    <option value="saving">Saving, Investing & Debt Payments</option>
+                    <option value="personal">Personal Spending</option>
+                    <option value="recreation">Recreation & Entertainment</option>
+                    <option value="miscellaneous">Miscellaneous</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="budget-expense">Expense on Budget:</label>
+                <input type="text" id="budget-expense">
+            </div>
+            <div>
+                <button id="add-btn">Add to Table</button>
+            </div>
+        </div>
+
+        <div class="category" id="expenses-list">
+            <div class="comparison-chart">
+                <div class="time-interval-selector">
+                    <label for="time-interval">Select Time Interval:</label>
+                    <select id="time-interval">
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+                </div>
+                <!-- <div class="pie-chart rotate-animation"></div> -->
+                <canvas id="pie-chart" class="pie-chart" ></canvas>
+
+
+
+            </div>
+            <div class="data-table" id="data-table">
+                <div class="data-table-content">
+
+                    <table id="expense-table">
+                        <thead>
+                            <tr>
+                                <th>Serial No.</th>
+                                <th>Expense Type</th>
+                                <th>Amount</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                      
+                    </table>
+
+                    <div>
+                        <label for="date-selector">Select Date:</label>
+                        <select id="date-selector" onchange="loadTableByDate()">
+                            <option value="">Select Date</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+    <script>
+        // Function to handle adding data to the table
+    document.getElementById("add-btn").addEventListener("click", function () {
+        var table = document.getElementById("expense-table");
+        var date = document.getElementById("date").value;
+        var expenseType = document.getElementById("expense-type").value;
+        var budgetExpense = parseFloat(document.getElementById("budget-expense").value);
+    
+        if (date && expenseType && budgetExpense) {
+            // Check if table with the same date already exists in localStorage
+            var storedTables = JSON.parse(localStorage.getItem("expenseTables")) || {};
+            var existingTable = storedTables[date];
+    
+            if (existingTable) {
+                table.innerHTML = existingTable; // Load existing table
+            } else {
+                // Create new table with date as heading
+                table.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th colspan="4">${date}</th>
+                        </tr>
+                        <tr>
+                            <th>Serial No.</th>
+                            <th>Expense Type</th>
+                            <th>Amount</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                `;
+            }
+    
+            // Add or update row in the table
+            var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+            var found = false;
+            for (var i = 0; i < rows.length; i++) {
+                var row = rows[i];
+                if (row.cells[1].textContent === expenseType) { // Check expense type in the second cell
+                    var currentAmount = parseFloat(row.cells[2].textContent);
+                    var updatedAmount = currentAmount + budgetExpense;
+                    row.cells[2].textContent = updatedAmount.toFixed(2); // Update amount cell with '+'
+                    found = true;
+                    break;
+                }
+            }
+    
+            if (!found) {
+                // Insert new row
+                var newRow = table.getElementsByTagName('tbody')[0].insertRow(-1);
+                var cell1 = newRow.insertCell(0);
+                var cell2 = newRow.insertCell(1);
+                var cell3 = newRow.insertCell(2);
+                var cell4 = newRow.insertCell(3);
+                cell1.textContent = rows.length ; // Serial number
+                cell2.textContent = expenseType; // Expense type
+                cell3.textContent = budgetExpense.toFixed(2); // Amount
+                cell4.innerHTML = '<button onclick="deleteRow(this)">Delete</button>'; // Delete button
+            }
+    
+            // Update localStorage
+            storedTables[date] = table.innerHTML;
+            localStorage.setItem("expenseTables", JSON.stringify(storedTables));
+    
+            // Update pie chart and total row
+            updatePieChartAndTotal();
+        } else {
+            alert("Please fill in all fields.");
+        }
+    
+        updatePieChartAndTotal();
+    });
+    
+    // Function to update pie chart and total row
+    function updatePieChartAndTotal() {
+        var expenseTable = document.getElementById("expense-table");
+        var rows = expenseTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+        var expensesData = {};
+        var totalExpense = 0;
+    
+        // Calculate total expenses and expenses for each category
+        for (var i = 0; i < rows.length; i++) {
+            var row = rows[i];
+            var expenseType = row.cells[1].textContent;
+            var amount = parseFloat(row.cells[2].textContent);
+            totalExpense += amount;
+            expensesData[expenseType] = (expensesData[expenseType] || 0) + amount;
+        }
+    
+        // Generate data for pie chart
+        var pieChartData = [];
+        for (var expenseType in expensesData) {
+            pieChartData.push({
+                label: expenseType,
+                value: expensesData[expenseType]
+            });
+        }
+    
+        // Update pie chart
+        updatePieChart(pieChartData);
+    
+        // Update total row
+        var totalRow = expenseTable.insertRow(-1);
+        totalRow.innerHTML = `
+            <td colspan="2">Total</td>
+            <td>${totalExpense.toFixed(2)}</td>
+            <td></td>
+        `;
+    }
+
+
+
+
+
+    var pieChart;
+    // Function to update pie chart
+    function updatePieChart(data) {
+        // Your code to update the pie chart using a library like Chart.js goes here
+        // You need to initialize or update the pie chart with the new data
+    
+    
+        // Define a global variable to store the pie chart instance
+    
+    
+    // Function to update the pie chart
+    
+        // Get the canvas element where the pie chart will be drawn
+        var ctx = document.getElementById('pie-chart').getContext('2d');
+    
+        // Check if the pie chart instance already exists
+        if (!pieChart) {
+            // If the pie chart instance doesn't exist, create a new one
+            pieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: data.map(item => item.label),
+                    datasets: [{
+                        label: 'Expenses',
+                        data: data.map(item => item.value),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255, 159, 64, 0.5)',
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            // Add more colors if needed
+                        ],
+                        borderWidth: 1
+                    }]
+                }
+            });
+        } else {
+            // If the pie chart instance already exists, update its data
+            pieChart.data.labels = data.map(item => item.label);
+            pieChart.data.datasets[0].data = data.map(item => item.value);
+            pieChart.update();
+        }
+    }
+    
+    
+    
+    // Function to delete a row
+    // Function to delete a row
+    // function deleteRow(btn) {
+    //     var row = btn.parentNode.parentNode;
+    //     var table = row.parentNode;
+    //     table.removeChild(row);
+    
+    //     // Recalculate total expense and update pie chart
+       
+        
+    //     // Update localStorage
+    //     var date = document.getElementById("date").value;
+    //     var storedTables = JSON.parse(localStorage.getItem("expenseTables")) || {};
+    //     var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+    //     var tableHTML = '';
+    //     for (var i = 0; i < rows.length; i++) {
+    //         tableHTML += rows[i].outerHTML;
+    //     }
+    //     storedTables[date] = tableHTML;
+    //     localStorage.setItem("expenseTables", JSON.stringify(storedTables));
+    //     updatePieChartAndTotal();
+    // }
+    
+
+    // Update localStorage after deleting a row
+function deleteRow(btn) {
+    var row = btn.parentNode.parentNode;
+    var table = row.parentNode;
+    table.removeChild(row);
+
+    // Recalculate total expense and update pie chart
+    updatePieChartAndTotal();
+
+    // Update localStorage
+    var date = document.getElementById("date").value;
+    var storedTables = JSON.parse(localStorage.getItem("expenseTables")) || {};
+    var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+    var tableHTML = '';
+    for (var i = 0; i < rows.length; i++) {
+        tableHTML += rows[i].outerHTML;
+    }
+    storedTables[date] = tableHTML;
+    localStorage.setItem("expenseTables", JSON.stringify(storedTables));
+}
+
+    
+    
+    
+    // Function to handle adding data to the table
+    document.getElementById("add-btn").addEventListener("click", function () {
+        var table = document.getElementById("expense-table");
+        var date = document.getElementById("date").value;
+        var expenseType = document.getElementById("expense-type").value;
+        var budgetExpense = parseFloat(document.getElementById("budget-expense").value);
+    
+        if (date && expenseType && budgetExpense) {
+            // Check if table with the same date already exists in localStorage
+            var storedTables = JSON.parse(localStorage.getItem("expenseTables")) || {};
+            var existingTable = storedTables[date];
+    
+            if (existingTable) {
+                table.innerHTML = existingTable; // Load existing table
+            } else {
+                // Create new table with date as heading
+                table.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th colspan="4">${date}</th>
+                        </tr>
+                        <tr>
+                            <th>Serial No.</th>
+                            <th>Expense Type</th>
+                            <th>Amount</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                `;
+            }
+    
+            // Add or update row in the table
+            var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+            var found = false;
+            for (var i = 0; i < rows.length; i++) {
+                var row = rows[i];
+                if (row.cells[1].textContent === expenseType) { // Check expense type in the second cell
+                    var currentAmount = parseFloat(row.cells[2].textContent);
+                    var updatedAmount = currentAmount + budgetExpense;
+                    row.cells[2].textContent = updatedAmount.toFixed(2); // Update amount cell with '+'
+                    found = true;
+                    break;
+                }
+            }
+    
+            if (!found) {
+                // Insert new row
+                var newRow = table.getElementsByTagName('tbody')[0].insertRow(-1);
+                var cell1 = newRow.insertCell(0);
+                var cell2 = newRow.insertCell(1);
+                var cell3 = newRow.insertCell(2);
+                var cell4 = newRow.insertCell(3);
+                cell1.textContent = rows.length + 1; // Serial number
+                cell2.textContent = expenseType; // Expense type
+                cell3.textContent = budgetExpense.toFixed(2); // Amount
+                cell4.innerHTML = '<button onclick="deleteRow(this)">Delete</button>'; // Delete button
+            }
+    
+            // Update localStorage
+            storedTables[date] = table.innerHTML;
+            localStorage.setItem("expenseTables", JSON.stringify(storedTables));
+    
+            // Update pie chart and total row
+            updatePieChartAndTotal();
+        } else {
+            alert("Please fill in all fields.");
+        }
+    
+        updatePieChartAndTotal();
+    });
+    
+    // Function to load table data from local storage based on selected date
+    function loadTableByDate() {
+        var selectedDate = document.getElementById("date-selector").value;
+        var storedTables = JSON.parse(localStorage.getItem("expenseTables")) || {};
+        var selectedTable = storedTables[selectedDate];
+        var table = document.getElementById("expense-table");
+    
+        if (selectedDate === getCurrentDate()) {
+            // If the selected date is the present day, check if data exists for the present day
+            if (selectedTable) {
+                table.innerHTML = selectedTable;
+                table.style.display = "block"; // Show the table
+            } else {
+                // If no data is available for the present day, create a new table with the present day as the heading
+                table.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th colspan="4">${selectedDate}</th>
+                        </tr>
+                        <tr>
+                            <th>Serial No.</th>
+                            <th>Expense Type</th>
+                            <th>Amount</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                `;
+                table.style.display = "block"; // Show the table
+            }
+        } else {
+            // For other selected dates, load the table normally
+            if (selectedTable) {
+                table.innerHTML = selectedTable;
+                table.style.display = "block"; // Show the table
+            } else {
+                table.innerHTML = "";
+                table.style.display = "none"; // Hide the table
+            }
+        }
+    
+        // Update pie chart and total row
+        updatePieChartAndTotal();
+    }
+    
+    // Load table data from local storage on page load
+    window.addEventListener("load", function () {
+        populateDateSelector();
+        loadTableByDate(); // Call loadTableByDate() after populating the date selector
+    
+        // Set the default date to the present date
+        var currentDate = getCurrentDate();
+        document.getElementById("date-selector").value = currentDate;
+        loadTableByDate();
+    });
+    
+    // Function to populate date selector with available dates
+    function populateDateSelector() {
+        var storedTables = JSON.parse(localStorage.getItem("expenseTables")) || {};
+        var dateSelector = document.getElementById("date-selector");
+        dateSelector.innerHTML = '<option value="">Select Date</option>';
+        for (var date in storedTables) {
+            dateSelector.innerHTML += `<option value="${date}">${date}</option>`;
+        }
+    }
+    
+    // Function to get current date
+    function getCurrentDate() {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+    
+        return yyyy + '-' + mm + '-' + dd;
+    }
+    
+        
+    $(document).ready(function () {
+                var $navIcon = $(".nav-icon");
+                var $navMenu = $("#navMenu");
+
+                // Function to show the navigation menu
+                function showNavMenu() {
+                    $navMenu.addClass("show");
+                    // $navIcon.addClass("show");
+                    $navMenu.css("max-height", $navMenu[0].scrollHeight + "px");
+                }
+
+                // Function to hide the navigation menu
+                function hideNavMenu() {
+                    $navMenu.removeClass("show");
+                    // $navIcon.removeClass("show");
+                    $navMenu.css("max-height", "0");
+                }
+
+                // Event listener for clicking on the navigation icon
+                $navIcon.on("click", function () {
+                    showNavMenu();
+                });
+
+                // Event listener for moving out of the navigation menu
+                $navMenu.on("mouseleave", function () {
+                    hideNavMenu();
+                });
+
+                // Event listener for moving out of the navigation icon
+                $navIcon.on("mouseleave", function () {
+                    hideNavMenu();
+                });
+
+                // Event listener for moving over the navigation menu
+                $navMenu.on("mouseenter", function () {
+                    showNavMenu();
+                });
+
+                // Event listener for moving over the navigation icon
+                $navIcon.on("mouseenter", function () {
+                    showNavMenu();
+                });
+
+            });
+
+
+            function toggleNavMenu() {
+                var $navMenu = $("#navMenu");
+                if ($navMenu.hasClass("show")) {
+                    hideNavMenu();
+                } else {
+                    showNavMenu();
+                }
+            }
+
+            function showNavMenu() {
+                $(".nav-menu").addClass("show");
+            }
+
+            function hideNavMenu() {
+                $(".nav-menu").removeClass("show");
+            }
+    </script>
+</body>
+
+</html>

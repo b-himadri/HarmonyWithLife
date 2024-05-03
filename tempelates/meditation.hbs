@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meditation Website Beginner Section</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="meditation.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        *{
+            font-family: Garamond;
+        }
+        header * {
+            margin: 0;
+        }
+        body {
+            background-color: #222121;
+        }
+
+        header {
+            display: flex;
+            flex-direction: row;
+            background-color: #ffffff;
+            height: 7rem;
+            width: 100%;
+            padding-top: 0.5rem;
+            padding-bottom: 1rem;
+            justify-content: space-between;
+            margin-left: 0rem;
+            position: relative;
+        }
+
+        .header>div {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+        .nav-bar {
+            padding-left: 1rem;
+            padding-top: 1.6rem;
+            width: 15rem;
+            /* background-color: #2c2e48; */
+            font-size: 1rem;
+            overflow: hidden;
+            /* color: #2c2e48; White text */
+            padding: 10px;
+        }
+
+
+
+
+        /* Style for the navigation icon */
+        .nav-icon {
+            float: left;
+            cursor: pointer;
+            color: #2c2e48;
+            /* White color for the icon */
+            font-size: 30px;
+            padding: 14px 16px;
+            width: 40px;
+        }
+
+        /* Style for the navigation menu */
+        .nav-menu {
+            display: none;
+            position: absolute;
+            background-color: #2c2e48;
+            /* background-color: #59c174; */
+            /* Light gray */
+            width: 200px;
+            padding: 10px;
+            top: calc(70%-10px);
+            /* top: 50px; */
+            /* Position it below the nav icon with a small gap */
+            left: 25px;
+            /* Align it with the left side of the nav icon */
+            border-radius: 5px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);
+            box-shadow: 0 2px 5px #2c2e48 rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            /* Box shadow for a subtle effect */
+        }
+        
+        /* Show class to display the navigation menu */
+        .nav-menu.show {
+            display: block;
+        }
+
+        /* Show class to change the style of the icon when menu is visible */
+        /* .nav-icon.show {
+  background-color: #5cb85c; /* Change background color of icon when menu is visible */
+
+
+        /* Style for the links inside the navigation menu */
+        .nav-menu a {
+            color: white;
+            /* Black color for the links */
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+             margin-bottom: 5px;
+        }
+
+       
+     
+
+        .nav-menu a:hover {
+            background-color: gray;
+            /* Gray on hover */
+        }
+
+
+
+
+       
+
+        /* .show {
+  display: block ;
+} */
+
+       
+
+
+        .logo {
+            padding-top: 1.6rem;
+            width: 50rem;
+            display: flex;
+            justify-content: center;
+            font-size: 2.5rem;
+            align-items: center;
+            padding-bottom: 0.5rem;
+            color: #2c2e48;
+            /* position: absolute;
+            left: 320px; */
+            position: relative; /* Changed position to relative */
+    left: 0; /* Adjusted left position to 0 */
+
+        }
+
+
+
+        .get-started-div-header {
+            padding-top: 0.9rem;
+            padding-right: 1rem;
+            width: 20rem;
+            display: flex;
+            justify-content: center;
+
+        }
+
+
+        .get-started {
+            height: 3.5rem;
+            width: 11rem;
+            /* border: 2px solid black; */
+            border-color: #59c174;
+            border-radius: 1.3rem;
+            /* background-color: rgb(249, 249, 149); */
+            font-size: 1rem;
+            background-color: #59c174;
+            color: #2c2e48;
+        }
+
+
+        .get-started:hover {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            color: #2c2e48;
+            letter-spacing: 0.06rem;
+            width: 12rem;
+            /* box-shadow: 0px 0px 0px 0px ; */
+            box-shadow: transparent;
+            background-color: #50b169;
+
+            /* border: 1px solid #59c174; */
+
+
+        }
+
+        .youtube-video {
+            margin-bottom: 30px;
+            height: 20rem;
+            /* Set the height of each row */
+            /* background-color: #fff; White background */
+            border-radius: 10px;
+            /* Rounded corners */
+            color: white;
+            /* background-color: #2c2e48;  */
+        }
+
+        .video-thumbnail {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .video-thumbnail img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+            height: 15rem;
+            /* Increase thumbnail size */
+        }
+
+        .video-details {
+            text-align: left;
+            /* Align text to the left */
+            padding: 4.5rem;
+        }
+
+        .btn-primary {
+            width: 100%;
+            /* Set button width to 100% */
+            max-width: 10rem;
+            /* Set maximum button width */
+            background-color: #ffffff;
+            /* White button */
+            border-color: #ffffff;
+            /* White border */
+            color: #2c2e48;
+            /* Dark blue text */
+        }
+
+        .btn-primary:hover {
+            background-color: #5d5e69;
+            /* Darker blue on hover */
+            border-color: #5d5e69;
+            /* Darker blue border on hover */
+        }
+
+        h4 {
+            color: white;
+            /* White heading */
+            margin-bottom: 15px;
+            /* Adjusted margin */
+        }
+
+        p {
+            color: #cccccc;
+            /* Light gray paragraph text */
+            margin-bottom: 15px;
+            /* Adjusted margin */
+        }
+
+        .gray-line {
+            border-top: 1px solid #ffffff;
+            /* White border */
+            margin: 30px 0;
+        }
+
+        @media (max-width: 768px) {
+            .youtube-video {
+                height: auto;
+                min-height: 25rem;
+                /* Set a minimum height for smaller screens */
+            }
+        }
+
+        h2 {
+            color: #59c174;
+            /* White heading */
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            /* Added margin below the main heading */
+            text-align: center;
+            /* Align the heading to the center */
+            font-size: 2.5rem;
+            /* Increase font size */
+            text-transform: uppercase;
+            /* Convert text to uppercase */
+            letter-spacing: 2px;
+            /* Add letter spacing */
+        }
+
+        .beginner-row {
+            background-color: #222121;
+        }
+
+        @media only screen and (max-width: 800px) {
+    .header>div {
+        width: 100%;
+        /* Each div takes full width on smaller screens */
+    }
+
+    .nav-bar,
+    .logo,
+    .get-started-div-header {
+        width: 100%;
+        /* Each section takes full width on smaller screens */
+        justify-content: center;
+        /* Align content to the center */
+        padding: 0;
+        /* Remove padding */
+    }
+
+    .nav-icon {
+        margin-right: 1rem;
+        /* Adjust margin for smaller screens */
+    }
+
+    .get-started {
+        margin-right: 1rem;
+        /* Adjust margin for smaller screens */
+    }
+}
+    </style>
+</head>
+
+<body>
+
+
+    <div class="header-stick">
+
+        <header>
+            <div class="nav-bar">
+                <div class="nav-icon" onclick="toggleNavMenu()">☰</div>
+            </div>
+
+            <div id="navMenu" class="nav-menu">
+                <!-- Content of your navigation menu goes here -->
+                <a href="/home">Home</a><br>
+                <a href="/expense">Expense</a><br>
+                <a href="/diet">Diet</a><br>
+                <a href="/journal">Journal</a><br>
+               <a href="/meditation">Meditation</a>
+
+            </div>
+
+
+
+            <div class="logo">
+
+                HarmonyWithLife
+
+            </div>
+
+            <div class="get-started-div-header">
+                <button class="get-started" onclick="window.location.href='/signup'">Get Started</button>
+            </div>
+
+        </header>
+
+    </div>
+
+
+
+
+    <div class="container " id="beginner-div">
+        <h2 class="mt-5 mb-4 text-center">Beginner Meditation Videos</h2> <!-- Centered the heading -->
+        <div class="gray-line"></div> <!-- Gray line break -->
+
+        <!-- Video Section -->
+        <div class="row beginner-row">
+            <div class="col-md-5 youtube-video"> <!-- Adjusted column width to 5 -->
+                <div class="video-thumbnail">
+                    <img src="https://i.pinimg.com/736x/9e/fa/06/9efa06a8f86501fd2c8801fc73c261f1.jpg" alt="Thumbnail 1">
+                </div>
+            </div>
+            <div class="col-md-7 youtube-video"> <!-- Adjusted column width to 7 -->
+                <div class="video-details center-content"> <!-- Added center-content class -->
+                    <h4>5-Minute Meditation You Can Do Anywhere</h4>
+                    <p>In just 5 minutes you can reset your day in a positive way.</p>
+                    <a href="https://youtu.be/inpok4MKVLM?feature=shared" class="btn btn-primary">Watch Video</a>
+                </div>
+            </div>
+        </div>
+        <div class="gray-line"></div> <!-- Gray line break -->
+
+
+        <div class="row beginner-row">
+            <div class="col-md-5 youtube-video"> <!-- Adjusted column width to 5 -->
+                <div class="video-thumbnail">
+                    <img src="https://i.pinimg.com/736x/d0/1c/48/d01c488a9387d9ac5f63ea9544169c00.jpg" alt="Thumbnail 1">
+                </div>
+            </div>
+            <div class="col-md-7 youtube-video"> <!-- Adjusted column width to 7 -->
+                <div class="video-details center-content"> <!-- Added center-content class -->
+                    <h4>10-Minute Meditation For Anxiety</h4>
+                    <p>Take a moment and let this guided meditation relieve your anxiety.</p>
+                    <a href="https://youtu.be/O-6f5wQXSu8?feature=shared" class="btn btn-primary">Watch Video</a>
+                </div>
+            </div>
+        </div>
+        <div class="gray-line"></div> <!-- Gray line break -->
+
+
+        <div class="row beginner-row">
+            <div class="col-md-5 youtube-video"> <!-- Adjusted column width to 5 -->
+                <div class="video-thumbnail">
+                    <img src="https://i.pinimg.com/736x/22/26/be/2226be99c55d63bc3fa4f3e87303e296.jpg" alt="Thumbnail 1">
+                </div>
+            </div>
+            <div class="col-md-7 youtube-video"> <!-- Adjusted column width to 7 -->
+                <div class="video-details center-content"> <!-- Added center-content class -->
+                    <h4>15-Minute Meditation For Self Love</h4>
+                    <p>Close your eyes and release all the negative thoughts that you have been holding on to. It's time
+                        from some self-love.</p>
+                    <a href="https://youtu.be/itZMM5gCboo?feature=shared" class="btn btn-primary">Watch Video</a>
+                </div>
+            </div>
+        </div>
+        <div class="gray-line"></div> <!-- Gray line break -->
+
+
+        <div class="row beginner-row">
+            <div class="col-md-5 youtube-video"> <!-- Adjusted column width to 5 -->
+                <div class="video-thumbnail">
+                    <img src="https://i.pinimg.com/736x/41/84/30/41843011a37c2d69b3922d38754aa614.jpg" alt="Thumbnail 1">
+                </div>
+            </div>
+            <div class="col-md-7 youtube-video"> <!-- Adjusted column width to 7 -->
+                <div class="video-details center-content"> <!-- Added center-content class -->
+                    <h4>10-Minute Meditation To Start Your Day</h4>
+                    <p>This easy 10-minute meditation is the perfect way to start your day off right.</p>
+                    <a href="https://youtu.be/ENYYb5vIMkU?feature=shared" class="btn btn-primary">Watch Video</a>
+                </div>
+            </div>
+        </div>
+        <div class="gray-line"></div> <!-- Gray line break -->
+
+
+        <div class="row beginner-row">
+            <div class="col-md-5 youtube-video"> <!-- Adjusted column width to 5 -->
+                <div class="video-thumbnail">
+                    <img src="https://i.pinimg.com/736x/fd/91/35/fd9135e551fd3fd92b3355e434cd96f7.jpg" alt="Thumbnail 1">
+                </div>
+            </div>
+            <div class="col-md-7 youtube-video"> <!-- Adjusted column width to 7 -->
+                <div class="video-details center-content"> <!-- Added center-content class -->
+                    <h4>10-Minute Meditation For Sleep</h4>
+                    <p>If you are feeling restless, listen to this guided meditation to ease your mind and body into
+                        falling asleep. </p>
+                    <a href="https://youtu.be/aEqlQvczMJQ?feature=shared" class="btn btn-primary">Watch Video</a>
+                </div>
+            </div>
+        </div>
+        <div class="gray-line"></div> <!-- Gray line break -->
+
+
+        <div class="row beginner-row">
+            <div class="col-md-5 youtube-video"> <!-- Adjusted column width to 5 -->
+                <div class="video-thumbnail">
+                    <img src="https://i.pinimg.com/736x/e7/72/58/e77258ae176eff38442985b99a4af39b.jpg" alt="Thumbnail 1">
+                </div>
+            </div>
+            <div class="col-md-7 youtube-video"> <!-- Adjusted column width to 7 -->
+                <div class="video-details center-content"> <!-- Added center-content class -->
+                    <h4>10-Minute Meditation For Anger</h4>
+                    <p>10-Minute Meditation For Anger</p>
+                    <a href="https://youtu.be/wkse4PPxkk4?feature=shared" class="btn btn-primary">Watch Video</a>
+                </div>
+            </div>
+        </div>
+        <div class="gray-line"></div> <!-- Gray line break -->
+
+
+        <div class="row beginner-row">
+            <div class="col-md-5 youtube-video"> <!-- Adjusted column width to 5 -->
+                <div class="video-thumbnail">
+                    <img src="https://i.pinimg.com/736x/5e/16/68/5e16683fd1e572062696c7df6730f320.jpg" alt="Thumbnail 1">
+                </div>
+            </div>
+            <div class="col-md-7 youtube-video"> <!-- Adjusted column width to 7 -->
+                <div class="video-details center-content"> <!-- Added center-content class -->
+                    <h4>10-Minute Meditation For Healing</h4>
+                    <p>Description of the video goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nullam ac ante
+                        turpis.</p>
+                    <a href="https://youtu.be/2FGR-OspxsU?feature=shared" class="btn btn-primary">Watch Video</a>
+                </div>
+            </div>
+        </div>
+        <div class="gray-line"></div> <!-- Gray line break -->
+
+
+
+        <!-- Bootstrap JS and dependencies -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <script>
+
+            $(document).ready(function () {
+                var $navIcon = $(".nav-icon");
+                var $navMenu = $("#navMenu");
+
+                // Function to show the navigation menu
+                function showNavMenu() {
+                    $navMenu.addClass("show");
+                    $navIcon.addClass("show");
+                }
+
+                // Function to hide the navigation menu
+                function hideNavMenu() {
+                    $navMenu.removeClass("show");
+                    $navIcon.removeClass("show");
+                }
+
+                // Event listener for clicking on the navigation icon
+                $navIcon.on("click", function () {
+                    showNavMenu();
+                });
+
+                // Event listener for moving out of the navigation menu
+                $navMenu.on("mouseleave", function () {
+                    hideNavMenu();
+                });
+
+                // Event listener for moving out of the navigation icon
+                $navIcon.on("mouseleave", function () {
+                    hideNavMenu();
+                });
+
+                // Event listener for moving over the navigation menu
+                $navMenu.on("mouseenter", function () {
+                    showNavMenu();
+                });
+
+                // Event listener for moving over the navigation icon
+                $navIcon.on("mouseenter", function () {
+                    showNavMenu();
+                });
+
+            });
+
+
+            function toggleNavMenu() {
+                var $navMenu = $("#navMenu");
+                if ($navMenu.hasClass("show")) {
+                    hideNavMenu();
+                } else {
+                    showNavMenu();
+                }
+            }
+
+            function showNavMenu() {
+                $(".nav-menu").addClass("show");
+            }
+
+            function hideNavMenu() {
+                $(".nav-menu").removeClass("show");
+            }
+
+
+
+
+
+        </script>
+</body>
+
+</html>

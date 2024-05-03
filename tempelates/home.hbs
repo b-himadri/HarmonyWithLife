@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INDEX HTML</title>
+
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    color: black;
+    /* font-family: Arial, sans-serif; */
+    font-family: Garamond;
+
+}
+
+
+.header-stick {
+    position: fixed;
+    width: 100%;
+    z-index: 6;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    height: 90px;
+    /* Adjust the height as needed */
+    background-color: rgba(9, 9, 9, 0.332);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    justify-content: space-between;
+}
+
+.header>div {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav-bar {
+    width: 24%;
+
+    justify-content: flex-start;
+    /* Align children to the start */
+    padding-left: 2rem;
+    /* Add padding to align the icon */
+}
+
+.nav-icon {
+
+    cursor: pointer;
+    /* color: #2c2e48; */
+    color: #fafafa;
+    font-size: 30px;
+    width: 40px;
+    /* padding-bottom: 12px; */
+    /* margin-right: 2rem;  */
+}
+
+
+
+.nav-menu {
+    display: none;
+    position: absolute;
+    background-color: #2c2e48;
+    width: 200px;
+    top: 60px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);
+    box-shadow: 0 2px 5px #2c2e48 rgba(0, 0, 0, 0.2);
+    max-height: 0; 
+   overflow: hidden;
+    transition: max-height 0.7s ease; 
+}
+
+.nav-menu.show {
+   
+        display: block;
+        max-height: 300px; 
+    
+    
+}
+
+.nav-menu a {
+    color: white;
+    /* Black color for the links */
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+     margin-bottom: 5px;
+}
+
+
+
+
+.nav-menu a:hover {
+    background-color: rgb(96, 95, 95);
+    color: white;
+    /* Gray on hover */
+} 
+
+
+
+
+
+
+.logo {
+    width: 50%;
+
+    display: flex;
+    justify-content: center;
+    /* Align the content to the center */
+}
+
+.logo h1 {
+    /* color: #23222d; */
+    color: #fafafa;
+    font-size: 2.3rem;
+    margin: 0;
+
+}
+
+.get-started-div-header {
+    width: 26%;
+    margin: 0;
+
+    display: flex;
+    /* justify-content: flex-end;  */
+    justify-content: center;
+    /* padding-right: 2rem;  */
+}
+
+.get-started {
+    height: 3.5rem;
+    width: 50%;
+    /* border: 2px solid black; */
+    /* border-color: #59c174; */
+    border-radius: 1.3rem;
+    /* background-color: rgb(249, 249, 149); */
+    font-size: 1rem;
+    /* background-color: #59c174; */
+    background-color: rgb(241, 219, 248);
+    color: #2c2e48;
+    border-color: transparent;
+}
+
+
+.get-started:hover {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #2c2e48;
+    letter-spacing: 0.06rem;
+    width: 53%;
+    box-shadow: transparent;
+    background-color: rgb(236, 194, 249);
+
+
+
+}
+
+.homepage-image {
+    display: flex;
+height: 38rem;
+    padding: 0px;
+    width: 100%;
+
+}
+
+
+@media (max-width: 1100px) {
+    .homepage-image {
+        display: none;
+    }
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    margin: 0px;
+    overflow: hidden;
+
+
+
+
+}
+
+
+.slide {
+    width: 100%;
+    opacity: 0;
+    /* Initially hide the slide */
+    overflow: hidden;
+}
+
+
+.fade-in {
+    animation: fadeIn 3s ease forwards;
+    /* Apply fadeIn animation */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        width: 110%;
+    }
+
+    to {
+        opacity: 1;
+        width: 100%;
+    }
+}
+
+.expense-relative-div {
+    position: relative;
+    height: 400px;
+    background-color: rgb(0, 0, 0);
+    top: -50px;
+    width: 100%;
+
+}
+
+
+.expense-outer-div {
+    display: block;
+    height: 400px;
+    background-color: lightblue;
+    width: 100%;
+
+}
+
+/* Adjust styles for smaller screens */
+
+
+@media only screen and (max-width: 800px) {
+    .header>div {
+        width: 100%;
+        /* Each div takes full width on smaller screens */
+    }
+
+    .nav-bar,
+    .logo,
+    .get-started-div-header {
+        width: 100%;
+        /* Each section takes full width on smaller screens */
+        justify-content: center;
+        /* Align content to the center */
+        padding: 0;
+        /* Remove padding */
+    }
+
+    .nav-icon {
+        margin-right: 1rem;
+        /* Adjust margin for smaller screens */
+    }
+
+    .get-started {
+        margin-right: 1rem;
+        /* Adjust margin for smaller screens */
+    }
+}
+
+         
+
+
+.heading-routine-journal{
+    position: relative;
+    top: 6rem;
+    left: 50%; /* Center the heading horizontally */
+    transform: translateX(-50%); /* Move the heading back to the center */
+    /* max-width: 28rem; */
+    max-width: 100%;
+    
+   
+    color: #fafafa;
+    font-size: 2.4rem;
+    letter-spacing: 0.11rem;
+    text-align: center; /* Center align the text */
+    
+}
+
+.routine-journal {
+    display: flex;
+    height: 78rem;
+    /* background-color: #2c2e48; */
+    flex-direction: column;
+    /* position: relative; */
+   
+}
+
+.routine-planning {
+    max-width: 100%;
+    background-color: #23222d; 
+    /* color: white; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Center items vertically */
+    padding: 3rem 5rem 0 5rem;
+    /* border-top: 1px solid rgb(255, 238, 238);
+    border-bottom: 1px solid rgb(255, 238, 238); */
+}
+
+.common{
+    height: 33rem;
+     border-top: 1px solid rgb(255, 238, 238);
+    border-bottom: 1px solid rgb(255, 238, 238);
+    width: 100%;
+    border-radius: 2rem;
+    color: wheat;
+    display: flex; /* Add display flex to allow centering */
+    flex-direction: column; /* Stack image and content vertically */
+    align-items: center; /* Center items horizontally */
+}
+
+.img-rj{
+    max-width: fit-content;
+    max-height: 20rem;
+    width: 30rem;
+    margin-top: 6rem; 
+    /* Remove absolute positioning */
+}
+
+.learn-more{
+    height: 3.5rem;
+    width: 11rem;
+    /* border: 2px solid black; */
+    border-color: #59c174;
+    border-radius: 1.3rem;
+    /* background-color: rgb(249, 249, 149); */
+    font-size: 1rem;
+    background-color: #59c174;
+    color: #2c2e48;
+    position: absolute;
+    bottom: 8rem; /* Adjust the bottom spacing */
+    left: 50%; /* Center the button horizontally */
+    transform: translateX(-50%); /* Move the button back to the center */
+}
+
+.learn-more:hover{
+    cursor: pointer;
+    transition: 0.2s;
+    color: #2c2e48;
+    letter-spacing: 0.06rem;
+    width: 12rem;
+    /* box-shadow: 0px 0px 0px 0px ; */
+    box-shadow: transparent;
+    background-color: #50b169;
+}
+
+.routine-heading {
+    position: relative;
+}
+
+.routine-content {
+    position: relative;
+}
+
+.journal-planning {
+    max-width: 100%;
+    background-color: #23222d;
+    display: flex;
+    padding: 1rem 5rem 5rem 5rem;
+    justify-content: space-between;
+    align-items: center; /* Center items vertically */
+}
+
+.journal-heading {
+    position: relative;
+}
+
+.journal-content {
+    position: relative;
+}
+
+#journal-img{
+    margin-left: 5px;
+    /* margin-top: 5rem; */
+}
+
+@media only screen and (min-width: 320px) and (max-width: 450px) {
+    .img-rj{
+
+        /* margin: 8rem; */
+        /* align-items: center; */
+        max-width: 100%;
+        /* max-height: fit-content; */
+        overflow: hidden;
+        /* padding: 2rem; */
+        justify-content: center; 
+
+
+    }
+
+    .heading-routine-journal {
+        /* font-size: 1.6rem; */
+        max-width: 100%;
+        max-height: 100%;
+        /* left: 1rem; */
+        top: 4rem;
+        text-align: center;
+    }
+
+    .meditation{
+        margin-top: px;
+    }
+
+
+
+}
+
+
+
+@media only screen and (max-width: 1000px) {
+    .heading-routine-journal {
+        font-size: 2rem;
+        max-width: 100%;
+        /* left: 1rem; */
+        /* position: relative; */
+    
+        text-align: center;
+       
+    }
+
+    .routine-planning,
+    .journal-planning {
+        flex-direction: column-reverse; /* Change flex direction to column for medium-sized screens */
+        padding: 0.5rem;
+    }
+
+    .img-rj {
+        margin-top: 4rem;
+        /* align-items: center; */
+        justify-content: center;
+    }
+
+    .learn-more {
+        margin-top: 0.5rem;
+        /* width: 100%; */
+        font-size: 0.8rem;
+        bottom: 6rem; /* Adjust the bottom spacing */
+    }
+
+    .common{
+        height: 28rem;
+        /* display: flex; */
+        /* position: absolute; */
+    }
+    
+
+    .meditation{
+        margin-top: 605px;
+    }
+    
+}
+
+
+
+
+
+
+.meditation-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+   /* z-index: 10; */
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* bottom: 2000px; */
+
+}
+
+
+
+@media only screen and (max-width: 800px) {
+    .meditation-container {
+        /* display: flex; */
+        /* position: absolute; */
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+       
+        
+       
+    }
+
+    .meditation-image {
+        width: 100%;
+        padding: 20px;
+
+    }
+
+    .meditation-content {
+
+        width: 100%;
+        position: relative;
+        padding: 20px;
+        justify-content: center;
+
+    }
+
+    
+    
+} 
+
+
+.meditation-image {
+    display: flex;
+
+    width: 80%;
+    align-items: center;
+ 
+
+}
+
+
+
+.meditation-content {
+    display: flex;
+
+    width: 80%;
+    position: relative;
+    padding: 20px;
+    justify-content: center;
+
+}
+
+
+.medi-div {
+ 
+    background-color: rgb(255, 221, 195);
+  
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: calc(50% -10px);
+  
+    padding: 20px;
+    max-width: fit-content;
+
+}
+
+
+
+.medi-header {
+
+  
+    font-size: 28px;
+    /* font-weight: bold; */
+
+    color: #2c2c2c;
+  
+    margin-bottom: 12px;
+    /* cursor: pointer; */
+    width: 50%;
+
+
+}
+
+
+.slide-open {
+    display: block;
+    max-height: 1000px;
+    font-size: 15px;
+    overflow: hidden;
+    opacity: 1;
+    color: #2c2c2c;
+
+}
+
+
+.meditation-slider-container {
+   
+    max-width: 720px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    width: 100%; /* Adjusted width */
+    overflow-x: auto; /* Allow horizontal scrolling */
+}
+
+.meditation-slider {
+    display: flex;
+    flex-wrap: nowrap; /* Ensure slider items stay in a single row */
+}
+
+.meditation-slide {
+    flex: 0 0 100%;
+}
+
+.meditation-slide img {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.Practice-now{
+    height: 3.5rem;
+    width: 11rem;
+    /* border: 2px solid black; */
+    border-color: #c159a2;
+    border-radius: 1.3rem;
+    /* background-color: rgb(249, 249, 149); */
+    font-size: 1rem;
+    background-color: rgb(226, 97, 140);
+    color: #2c2e48;
+    /* position: absolute;
+    bottom: 8rem;  Adjust the bottom spacing *
+    left: 50%; Center the button horizontally */
+    
+}
+
+.Practice-now:hover{
+    cursor: pointer;
+    transition: 0.2s;
+    color: #2c2e48;
+    letter-spacing: 0.06rem;
+    width: 12rem;
+    /* box-shadow: 0px 0px 0px 0px ; */
+    box-shadow: transparent;
+    background-color: rgb(206, 129, 155);
+}
+
+
+
+/* FOOTER SECTION */
+
+
+
+@media screen and (max-width: 400px) {
+    .footer {
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+}
+
+
+@media screen and (min-width: 401px) and (max-width: 700px) {
+    .footer {
+        padding-left: 15px; /* Adjust padding for smaller screens */
+        padding-right: 15px; /* Adjust padding for smaller screens */
+    }
+}
+/* @media screen and (max-width: 700px) {
+    .footer {
+        padding-left: 10px; 
+        padding-right: 10px; 
+    }
+} */
+
+
+@media screen and (max-width: 768px) {
+    .footer {
+        flex-direction: column; /* Stack items vertically */
+        padding-left: 20px; /* Adjust padding for smaller screens */
+        padding-right: 20px; /* Adjust padding for smaller screens */
+    }
+}
+.footer {
+    /* background-color: #2c2e48;  */
+    background-color: rgb(134, 53, 13);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    font-size: 14px;
+    /* font-family: Arial, sans-serif; */
+    display: flex; /* Align children horizontally */
+    justify-content: space-between; /* Equal space between children */
+    padding-left: 80px;
+    padding-right: 100px;
+}
+
+.footer-fonts p {
+    color: white;
+}
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+  
+}
+
+.footer ul {
+    list-style-type: none;
+    padding: 0;
+    
+}
+
+.footer ul li {
+    display: inline;
+    margin: 0 10px;
+  
+}
+
+</style>
+
+
+</head>
+
+<body>
+    <div class="header-stick">
+        <div class="header">
+            <div class="nav-bar">
+                <div class="nav-icon" onclick="toggleNavMenu()">
+                    ☰
+                </div>
+                <div id="navMenu" class="nav-menu">
+                    <!-- Content of your navigation menu goes here -->
+                    <a href="/home">Home</a><br>
+                    <a href="/expense">Expense</a><br>
+                    <a href="/diet">Diet</a><br>
+                    <a href="/journal">Journal</a><br>
+                   <a href="/meditation">Meditation</a>
+    
+                </div>
+    
+            </div>
+            <div class="logo">
+                <h1>HarmonyWithLife</h1>
+            </div>
+            <div class="get-started-div-header">
+                <button class="get-started" onclick="window.location.href='/signup'">Get Started</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="homepage-image">
+        <div class="slider">
+            <img src="https://i.pinimg.com/736x/b2/08/af/b208aff231ccdbf39a02dbdd5c2089be.jpg" class="slide active fade-in">
+        </div>
+
+    </div>
+
+    <!-- <div class="expense-outer-div">
+        <div class="expense-relative-div">
+            hi
+
+        </div>
+    </div> -->
+
+
+
+
+
+
+    <div class="routine-journal">
+
+       
+
+        <div class="routine-planning">
+            <div class="routine-heading common">
+                <h1 class="heading-routine-journal"> "Be Your Best, Feel Your Best: Dive into Health, Dive into Life!"
+                </h1>
+                <button class="learn-more" onclick="window.location.href='/diet'">
+                    Learn More
+                </button>
+            </div>
+            <div class="routine-content common">
+                <img class="img-rj" src="https://i.pinimg.com/736x/e0/43/e1/e043e1c87e9fe615720b4c38ed83a6d4.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="journal-planning ">
+            <div class="journal-heading common">
+                <h1 class="heading-routine-journal">
+                    "Journey Through Words: Your Sanctuary for Reflection and Growth"</h1>
+                <button class="learn-more" onclick="window.location.href='/journal'">
+                    Learn More
+                </button>
+            </div>
+            <div class="journal-content common">
+                <img id="journal-img" class="img-rj" src="https://i.pinimg.com/736x/93/b2/f1/93b2f1d02a6a8b89352470961bbf9fb7.jpg" alt="">
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="meditation">
+        <div class="meditation-container">
+            <div class="meditation-image">
+
+
+                <div class="meditation-slider-container">
+                    <div class="meditation-slider" id="meditation-slider">
+                        <!-- Slider content will be generated dynamically -->
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="meditation-content">
+
+                <div class="meditation-beginner medi-div">
+                    <div class="medi-header">Meditation  <br>
+
+                        <div style="font-size: 1rem;">Start your meditation journey here.</div>
+
+                    </div>
+                    <div class="slide-open">
+                        In this sanctuary of silence, find solace in the simple act of being. Feel the gentle pulse of life coursing through your veins, connecting you to the heartbeat of the universe. Surrender to the ebb and flow of existence, trusting in the natural rhythm of life.
+
+
+
+                        <br><br>
+
+                        <button class="Practice-now" onclick="window.location.href='/meditation'">
+                            Practice now
+                        </button>
+                       
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+    <footer class="footer">
+        <div class="footer-fonts">
+            <h3 style="color: white;
+            margin-bottom: 10px;">
+
+
+Harmony With Life</h3>
+            <p>Where wellness meets serenity. Find your balance today.</p>
+        </div>
+        <div class="footer-fonts">
+            <h3 style="color: white;
+             margin-bottom: 10px;">Useful Links</h3>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/expense">Expense</a></li>
+                <li><a href="/diet">Diet Log</a></li>
+                <li><a href="/journal">Journal Log</a></li>
+                <li><a href="/meditation">Meditation</a></li>
+            </ul>
+        </div>
+        <div class="footer-fonts">
+            <h3 style="color: white;
+             margin-bottom: 10px;">Contact Us</h3>
+            <p style=" margin-bottom: 10px;">123 Main Street, Jalandhar, India</p>
+            <p style=" margin-bottom: 10px;"> Email: harmonywithlife@example.com</p>
+            <p style=" margin-bottom: 10px;">Phone: +91 8388383838</p>
+        </div>
+    </footer>
+
+
+
+
+    <script>
+
+        //NAV BAR STARTS
+
+        $(document).ready(function () {
+                var $navIcon = $(".nav-icon");
+                var $navMenu = $("#navMenu");
+
+                // Function to show the navigation menu
+                function showNavMenu() {
+                    $navMenu.addClass("show");
+                    // $navIcon.addClass("show");
+                    $navMenu.css("max-height", $navMenu[0].scrollHeight + "px");
+                }
+
+                // Function to hide the navigation menu
+                function hideNavMenu() {
+                    $navMenu.removeClass("show");
+                    // $navIcon.removeClass("show");
+                    $navMenu.css("max-height", "0");
+                }
+
+                // Event listener for clicking on the navigation icon
+                $navIcon.on("click", function () {
+                    showNavMenu();
+                });
+
+                // Event listener for moving out of the navigation menu
+                $navMenu.on("mouseleave", function () {
+                    hideNavMenu();
+                });
+
+                // Event listener for moving out of the navigation icon
+                $navIcon.on("mouseleave", function () {
+                    hideNavMenu();
+                });
+
+                // Event listener for moving over the navigation menu
+                $navMenu.on("mouseenter", function () {
+                    showNavMenu();
+                });
+
+                // Event listener for moving over the navigation icon
+                $navIcon.on("mouseenter", function () {
+                    showNavMenu();
+                });
+
+            });
+
+
+            function toggleNavMenu() {
+                var $navMenu = $("#navMenu");
+                if ($navMenu.hasClass("show")) {
+                    hideNavMenu();
+                } else {
+                    showNavMenu();
+                }
+            }
+
+            function showNavMenu() {
+                $(".nav-menu").addClass("show");
+            }
+
+            function hideNavMenu() {
+                $(".nav-menu").removeClass("show");
+            }
+
+
+        //NAV BAR ENDS 
+
+
+        // MEDITATION SECTION STARTS 
+        const images = ["https://i.pinimg.com/736x/54/4a/3e/544a3e173acd4a80806eba8e4551fafe.jpg", "https://i.pinimg.com/564x/21/cb/25/21cb253d9d4f3856dfa7118872dee448.jpg"];
+        const slider = document.getElementById('meditation-slider');
+        let currentIndex = 0;
+        let intervalId;
+
+        // Dynamically generate slider content from the array of images
+        slider.innerHTML = images.map(image => `<div class="meditation-slide"><img src="${image}" alt="Meditation Image"></div>`).join('');
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateSlider();
+        }
+
+        function updateSlider() {
+            const offset = -currentIndex * slider.offsetWidth;
+            slider.style.transform = `translateX(${offset}px)`;
+
+
+            if (currentIndex === images.length - 1) {
+                clearInterval(intervalId); // Clear previous interval
+                intervalId = setInterval(nextSlide, 4000); // Start new interval
+                setTimeout(() => {
+                    currentIndex = 0;
+                    updateSlider();
+                }, 4000);
+            }
+        }
+
+        intervalId = setInterval(nextSlide, 4000); // Start interval for switching images every 4 seconds
+
+
+        //MEDITATION SECTION ENDS
+
+
+
+        //
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>
+
+
+
+
+
+
